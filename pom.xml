@@ -21,6 +21,12 @@
 
 
     <dependencies>
+        <!--security依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--thymeleaf依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,6 +65,14 @@
             <artifactId>druid</artifactId>
             <version>1.2.14</version>
         </dependency>
+
+
+        <!--swaggerUI-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.springfox</groupId>-->
+        <!--            <artifactId>springfox-boot-starter</artifactId>-->
+        <!--            <version>3.0.0</version>-->
+        <!--        </dependency>-->
 
         <!--junit单元测试依赖-->
         <dependency>
