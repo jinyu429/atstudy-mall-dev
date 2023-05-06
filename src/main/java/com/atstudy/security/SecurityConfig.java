@@ -1,5 +1,6 @@
 package com.atstudy.security;
 
+import com.atstudy.security.handler.LogOutSuccessHandler;
 import com.atstudy.security.handler.LoginErrorHandler;
 import com.atstudy.security.handler.LoginSuccessHandler;
 import com.atstudy.security.handler.PermissionValidErrorHandler;
@@ -10,7 +11,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -36,11 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LoginSuccessHandler loginSuccessHandler;
 
 
+
     @Resource
     private LoginErrorHandler loginErrorHandler;
 
     @Resource
     private PermissionValidErrorHandler permissionValidErrorHandler;
+
+
+    @Resource
+    private LogOutSuccessHandler logOutSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -79,6 +84,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginErrorHandler)                          // 登录处理器
                 .successHandler(loginSuccessHandler)                        // 登录成功的处理器
                 .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/index/logout")
+                .logoutSuccessHandler(logOutSuccessHandler)
                 .and()
                 .csrf()
                 .disable()
