@@ -107,16 +107,24 @@
 								<img th:src="@{/img/j14.png}" height="20px" class="img  img-circle img-arrow" style="position: absolute; right: 10px; top: 10px; opacity: 0.7;"/>
 							</a>
 						</li>
+						<ul class="list-group nomargin nopadding noborder" style="display: none;">
+							<div th:each="small : ${admin.menuList}">
+								<div th:if="${small.pid} == ${big.menuId} ">
+
+									<li class="list-group-item list-group-item-slider hand nopadding nomargin noborder">
+										<a href="javascript:void(0)" th:id="@{${small.menuUrl}}" target="iframe-index" class="full-link list-group-item-link-small list-group-item-url">
+											<img  th:src="@{/img/48323.png}" height="20px" class="img img-circle"/>&nbsp;&nbsp;
+											<span th:text="${small.menuName}"></span>
+										</a>
+									</li>
+
+								</div>
+							</div>
+
+						</ul>
 					</div>
 
-					<ul class="list-group nomargin nopadding noborder" style="display: none;">
-						<li class="list-group-item list-group-item-slider hand nopadding nomargin noborder">
-							<a href="javascript:void(0)" id="admin_form_1.html" target="iframe-index" class="full-link list-group-item-link-small list-group-item-url">
-								<img  th:src="@{/img/48323.png}" height="20px" class="img img-circle"/>&nbsp;&nbsp;
-								普通表单
-							</a>
-						</li>
-					</ul>
+
 				</div>
 
 

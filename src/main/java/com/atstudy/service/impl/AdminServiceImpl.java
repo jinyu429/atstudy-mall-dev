@@ -2,6 +2,8 @@ package com.atstudy.service.impl;
 
 import com.atstudy.entity.Admin;
 import com.atstudy.entity.Role;
+import com.atstudy.entity.bo.AdminSearchBo;
+import com.atstudy.entity.bo.PageBo;
 import com.atstudy.mapper.AdminMapper;
 import com.atstudy.mapper.RoleMapper;
 import com.atstudy.service.AdminService;
@@ -36,5 +38,18 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return admin;
+    }
+
+    @Override
+    public List<Admin> listBySearchBo(AdminSearchBo adminSearchBo, PageBo pageBo) {
+        // 查询到符合筛选条件的总记录数
+        Long count = adminMapper.getCount(adminSearchBo);
+        // 给分页模型对象·赋值
+        // 给分页模型的总记录数赋值，给总记录数赋值的时候也会给总页数赋值
+        pageBo.setResultCount(count);
+
+        // 查询满足条件的员工列表
+        List<Admin> admins = adminMapper.listByAdminSearchBo(adminSearchBo,pageBo);
+        return admins;
     }
 }
