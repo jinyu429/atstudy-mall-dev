@@ -18,8 +18,7 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
-    @Resource
-    private RoleService roleService;
+
 
 
     @RequestMapping("/admin")
